@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <title>ZSYS v2.0 | Loading...</title>
+    <link rel="stylesheet" href="css/loader.css">
+</head>
+<body>
+    
+    <!-- LOADING SCREEN -->
+    <div id="loaderScreen" class="loader-screen">
+        
+        <!-- Matrix Rain Canvas -->
+        <canvas id="matrixCanvas"></canvas>
+        
+        <!-- Loader Content -->
+        <div class="loader-content">
+            
+            <!-- Skull Logo -->
+            <div class="skull-logo glitch-skull">
+                <pre id="skullASCII"></pre>
+            </div>
+            
+            <!-- Title -->
+            <div class="title-container">
+                <h1 class="main-title glitch-text" data-text="ZAYN'S STREAK">
+                    ZAYN'S STREAK
+                </h1>
+                <div class="subtitle-container">
+                    <span class="subtitle typing-text" id="typingSub"></span>
+                    <span class="cursor blink">▌</span>
+                </div>
+            </div>
+            
+            <!-- Progress -->
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span id="progressText">INITIALIZING...</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar-cyber">
+                    <div class="progress-fill-cyber" id="progressFill"></div>
+                    <div class="progress-glitch"></div>
+                </div>
+            </div>
+            
+            <!-- Boot Messages -->
+            <div class="boot-log" id="bootLog"></div>
+            
+            <!-- Version -->
+            <div class="version-text">ZSYS v2.0 // STREAK_ENGINE</div>
+        </div>
+        
+        <!-- Scanlines Effect -->
+        <div class="scanlines"></div>
+        <div class="vignette"></div>
+    </div>
+    
+    <!-- MAIN APP (Hidden initially) -->
+    <div id="mainApp" class="main-app hidden">
+        <!-- Your main app content here -->
+        <h1 style="color:#00FF88;text-align:center;margin-top:40vh;">WELCOME TO STREAK TRACKER</h1>
+    </div>
+    
+    <script src="js/loader.js"></script>
+</body>
+</html>
