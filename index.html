@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
     <title>ZSYS v2.0 | Loading...</title>
-    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- ✅ FIX: Simple path -->
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     
@@ -58,12 +61,13 @@
         <div class="vignette"></div>
     </div>
     
-    <!-- MAIN APP (Hidden initially) -->
+    <!-- MAIN APP -->
     <div id="mainApp" class="main-app hidden">
-        <!-- Your main app content here -->
         <h1 style="color:#00FF88;text-align:center;margin-top:40vh;">WELCOME TO STREAK TRACKER</h1>
     </div>
     
-        <script src="script.js"></script>
+    <!-- ✅ Script at end of body -->
+    <script src="script.js"></script>
+    
 </body>
 </html>
