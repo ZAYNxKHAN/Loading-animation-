@@ -1,4 +1,4 @@
-/* ===== LOADER SCREEN ===== */
+/* ===== RESET ===== */
 * {
     margin: 0;
     padding: 0;
@@ -10,8 +10,12 @@ body {
     overflow: hidden;
     font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
     -webkit-tap-highlight-color: transparent;
+    cursor: crosshair;
 }
 
+/* ========================================== */
+/* ===== LOADING SCREEN ===== */
+/* ========================================== */
 .loader-screen {
     position: fixed;
     top: 0;
@@ -27,7 +31,6 @@ body {
     overflow: hidden;
 }
 
-/* ===== MATRIX CANVAS - FULL OPACITY ===== */
 #matrixCanvas {
     position: absolute;
     top: 0;
@@ -38,7 +41,6 @@ body {
     z-index: 1;
 }
 
-/* ===== LOADER CONTENT ===== */
 .loader-content {
     position: relative;
     z-index: 10;
@@ -62,7 +64,7 @@ body {
     }
 }
 
-/* ===== SKULL ASCII ===== */
+/* Skull */
 .skull-logo {
     margin-bottom: 15px;
     opacity: 0;
@@ -87,16 +89,8 @@ body {
 }
 
 @keyframes skullAppear {
-    from { 
-        opacity: 0; 
-        transform: translateY(15px) scale(0.9);
-        filter: blur(5px);
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-    }
+    from { opacity: 0; transform: translateY(15px) scale(0.9); filter: blur(5px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
 @keyframes skullGlitch {
@@ -110,7 +104,7 @@ body {
     50% { filter: drop-shadow(0 0 40px #00FF88) drop-shadow(0 0 60px #B026FF); }
 }
 
-/* ===== TITLE ===== */
+/* Title */
 .title-container {
     margin-bottom: 25px;
     position: relative;
@@ -124,32 +118,18 @@ body {
     text-transform: uppercase;
     margin-bottom: 10px;
     text-shadow: 
-        0 0 5px #00FF88,
-        0 0 15px #00FF88,
-        0 0 40px #00FF88,
-        0 0 80px #00FF88,
-        0 0 120px #B026FF,
-        0 0 160px #B026FF;
+        0 0 5px #00FF88, 0 0 15px #00FF88,
+        0 0 40px #00FF88, 0 0 80px #00FF88,
+        0 0 120px #B026FF, 0 0 160px #B026FF;
     animation: titleGlow 2s ease-in-out infinite;
 }
 
 @keyframes titleGlow {
     0%, 100% { 
-        text-shadow: 
-            0 0 5px #00FF88,
-            0 0 15px #00FF88,
-            0 0 40px #00FF88,
-            0 0 80px #00FF88,
-            0 0 120px #B026FF;
+        text-shadow: 0 0 5px #00FF88, 0 0 15px #00FF88, 0 0 40px #00FF88, 0 0 80px #00FF88, 0 0 120px #B026FF;
     }
     50% { 
-        text-shadow: 
-            0 0 10px #00FF88,
-            0 0 30px #00FF88,
-            0 0 60px #00FF88,
-            0 0 100px #00FF88,
-            0 0 150px #B026FF,
-            0 0 200px #FF2D95;
+        text-shadow: 0 0 10px #00FF88, 0 0 30px #00FF88, 0 0 60px #00FF88, 0 0 100px #00FF88, 0 0 150px #B026FF, 0 0 200px #FF2D95;
     }
 }
 
@@ -201,7 +181,7 @@ body {
     37% { transform: translate(2px, -3px); }
 }
 
-/* ===== SUBTITLE ===== */
+/* Subtitle */
 .subtitle-container {
     display: flex;
     justify-content: center;
@@ -235,7 +215,7 @@ body {
     50% { opacity: 0; }
 }
 
-/* ===== PROGRESS BAR ===== */
+/* Progress */
 .progress-container {
     margin: 25px 0;
     position: relative;
@@ -275,29 +255,18 @@ body {
     border: 1px solid #1A1A1A;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: 
-        inset 0 0 10px rgba(0,0,0,0.5),
-        0 0 20px rgba(0, 255, 136, 0.1);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 20px rgba(0, 255, 136, 0.1);
 }
 
 .progress-fill-cyber {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, 
-        #00FF88, 
-        #00F0FF, 
-        #B026FF, 
-        #FF2D95,
-        #00FF88
-    );
+    background: linear-gradient(90deg, #00FF88, #00F0FF, #B026FF, #FF2D95, #00FF88);
     background-size: 300% 100%;
     animation: progressGlow 2s linear infinite;
     transition: width 0.2s ease;
     border-radius: 4px;
-    box-shadow: 
-        0 0 15px #00FF88,
-        0 0 30px #00FF88,
-        inset 0 0 10px rgba(255,255,255,0.1);
+    box-shadow: 0 0 15px #00FF88, 0 0 30px #00FF88, inset 0 0 10px rgba(255,255,255,0.1);
     position: relative;
 }
 
@@ -317,12 +286,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, 
-        transparent 35%, 
-        rgba(255, 45, 149, 0.5) 35%, 
-        rgba(255, 45, 149, 0.5) 37%, 
-        transparent 37%
-    );
+    background: linear-gradient(90deg, transparent 35%, rgba(255, 45, 149, 0.5) 35%, rgba(255, 45, 149, 0.5) 37%, transparent 37%);
     opacity: 0;
     animation: glitchBar 0.2s infinite;
 }
@@ -338,7 +302,7 @@ body {
     20% { opacity: 0; transform: translateX(-5px); }
 }
 
-/* ===== BOOT LOG ===== */
+/* Boot Log */
 .boot-log {
     text-align: left;
     padding: 12px;
@@ -376,14 +340,8 @@ body {
 }
 
 @keyframes logAppear {
-    from { 
-        opacity: 0; 
-        transform: translateX(-15px);
-    }
-    to { 
-        opacity: 1; 
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(-15px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes errorShake {
@@ -392,7 +350,6 @@ body {
     75% { transform: translateX(3px); }
 }
 
-/* ===== VERSION ===== */
 .version-text {
     margin-top: 20px;
     font-size: 0.55rem;
@@ -402,7 +359,330 @@ body {
     text-shadow: 0 0 5px rgba(0, 255, 136, 0.1);
 }
 
-/* ===== SCANLINES ===== */
+/* ========================================== */
+/* ===== MAIN WELCOME SCREEN ===== */
+/* ========================================== */
+.main-app {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: radial-gradient(ellipse at center, #060606 0%, #000000 70%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9998;
+    animation: mainAppear 0.8s ease-out;
+}
+
+.main-app.hidden {
+    display: none;
+}
+
+@keyframes mainAppear {
+    from { opacity: 0; filter: brightness(3) blur(5px); }
+    to { opacity: 1; filter: brightness(1) blur(0); }
+}
+
+/* Main Matrix Canvas */
+#mainAppCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    z-index: 1;
+}
+
+/* ===== HORIZONTAL SCROLL TEXT ===== */
+.horizontal-scroll-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.horizontal-scroll {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.06;
+    color: #00FF88;
+    text-shadow: 0 0 10px #00FF88;
+}
+
+#horizontalScroll1 {
+    top: 15%;
+    animation: scrollRight 20s linear infinite;
+}
+
+#horizontalScroll2 {
+    top: 50%;
+    animation: scrollLeft 25s linear infinite;
+    color: #B026FF;
+    text-shadow: 0 0 10px #B026FF;
+}
+
+#horizontalScroll3 {
+    top: 80%;
+    animation: scrollRight 22s linear infinite;
+    color: #00F0FF;
+    text-shadow: 0 0 10px #00F0FF;
+}
+
+@keyframes scrollRight {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100vw); }
+}
+
+@keyframes scrollLeft {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-100%); }
+}
+
+/* ===== WELCOME CONTENT ===== */
+.welcome-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+    max-width: 450px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Small Skull */
+.small-skull {
+    opacity: 0.5;
+    margin-bottom: 5px;
+}
+
+#smallSkullASCII {
+    font-size: clamp(4px, 1vw, 7px);
+    line-height: 1.1;
+    color: #00FF88;
+    text-shadow: 0 0 10px #00FF88, 0 0 20px #00FF88;
+    animation: skullPulse 3s infinite;
+}
+
+/* Welcome Title */
+.welcome-title {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-weight: 900;
+    color: #00FF88;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px #00FF88, 0 0 30px #00FF88, 0 0 60px #B026FF;
+    text-transform: uppercase;
+}
+
+.glitch-text-small {
+    position: relative;
+}
+
+.glitch-text-small::before,
+.glitch-text-small::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.6;
+}
+
+.glitch-text-small::before {
+    color: #FF2D95;
+    animation: glitchShift1 3s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+}
+
+.glitch-text-small::after {
+    color: #00F0FF;
+    animation: glitchShift2 4s infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+}
+
+/* ===== ROAST BOX ===== */
+.roast-box {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #1A1A1A;
+    padding: 20px 16px;
+    position: relative;
+    max-width: 380px;
+    width: 100%;
+    animation: boxGlow 3s ease-in-out infinite;
+}
+
+@keyframes boxGlow {
+    0%, 100% { border-color: #1A1A1A; box-shadow: 0 0 10px rgba(0, 255, 136, 0.1); }
+    33% { border-color: #B026FF; box-shadow: 0 0 20px rgba(176, 38, 255, 0.2); }
+    66% { border-color: #00F0FF; box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); }
+}
+
+.roast-border-top,
+.roast-border-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #00FF88;
+    font-size: 0.6rem;
+    letter-spacing: 8px;
+    text-shadow: 0 0 10px #00FF88;
+}
+
+.roast-border-top {
+    top: -10px;
+    background: #000;
+    padding: 0 8px;
+}
+
+.roast-border-bottom {
+    bottom: -10px;
+    background: #000;
+    padding: 0 8px;
+}
+
+.roast-quote {
+    color: #CCCCCC;
+    font-size: clamp(0.65rem, 2vw, 0.8rem);
+    line-height: 1.8;
+    letter-spacing: 1px;
+    animation: textColorShift 4s infinite;
+}
+
+@keyframes textColorShift {
+    0%, 100% { color: #CCCCCC; text-shadow: 0 0 5px rgba(204, 204, 204, 0.3); }
+    25% { color: #00FF88; text-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
+    50% { color: #B026FF; text-shadow: 0 0 10px rgba(176, 38, 255, 0.5); }
+    75% { color: #00F0FF; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+}
+
+.roast-emojis {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    animation: emojiBounce 2s infinite;
+}
+
+@keyframes emojiBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Action Text */
+.action-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.action-line {
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    color: #666;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.action-line.highlight {
+    color: #CCFF00;
+    text-shadow: 0 0 10px #CCFF00, 0 0 20px #CCFF00;
+    font-weight: bold;
+    font-size: clamp(0.8rem, 3vw, 1.1rem);
+    animation: highlightPulse 1.5s infinite;
+}
+
+@keyframes highlightPulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Enter Button */
+.enter-btn {
+    position: relative;
+    background: transparent;
+    border: 2px solid #00FF88;
+    color: #00FF88;
+    padding: 14px 30px;
+    font-family: inherit;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    letter-spacing: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    overflow: hidden;
+    text-shadow: 0 0 10px #00FF88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+    min-height: 48px;
+}
+
+.enter-btn:hover,
+.enter-btn:active {
+    background: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.4), 0 0 60px rgba(0, 255, 136, 0.2);
+    transform: scale(1.02);
+}
+
+.enter-btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.enter-btn-glitch {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 45, 149, 0.3), transparent);
+    animation: btnGlitch 3s infinite;
+}
+
+@keyframes btnGlitch {
+    0%, 100% { left: -100%; }
+    50% { left: 100%; }
+}
+
+/* Status Bar */
+.status-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.55rem;
+    color: #333;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    background: #00FF88;
+    border-radius: 50%;
+    animation: statusDotBlink 1s infinite;
+    box-shadow: 0 0 10px #00FF88;
+}
+
+@keyframes statusDotBlink {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* ========================================== */
+/* ===== SHARED EFFECTS ===== */
+/* ========================================== */
 .scanlines {
     position: absolute;
     top: 0;
@@ -420,7 +700,6 @@ body {
     pointer-events: none;
 }
 
-/* ===== VIGNETTE ===== */
 .vignette {
     position: absolute;
     top: 0;
@@ -437,8 +716,9 @@ body {
     pointer-events: none;
 }
 
-/* ===== SCREEN FLICKER ON START ===== */
-.loader-screen::before {
+/* Screen Flicker */
+.loader-screen::before,
+.main-app::before {
     content: '';
     position: absolute;
     top: 0;
@@ -448,23 +728,12 @@ body {
     background: rgba(0, 255, 136, 0.03);
     z-index: 6;
     pointer-events: none;
-    animation: screenFlicker 0.1s infinite;
+    animation: screenFlicker 0.15s infinite;
 }
 
 @keyframes screenFlicker {
-    0%, 95%, 97%, 100% { opacity: 0; }
-    96% { opacity: 1; }
-}
-
-/* ===== HIDE MAIN APP ===== */
-.main-app.hidden {
-    display: none;
-}
-
-.main-app {
-    background: #050505;
-    min-height: 100vh;
-    color: #fff;
+    0%, 94%, 96%, 100% { opacity: 0; }
+    95% { opacity: 1; }
 }
 
 /* ===== RESPONSIVE ===== */
@@ -472,16 +741,28 @@ body {
     .main-title {
         letter-spacing: 3px;
     }
+    .welcome-title {
+        letter-spacing: 2px;
+    }
     .boot-log {
-        font-size: 0.55rem;
-        max-height: 70px;
+        font-size: 0.5rem;
+        max-height: 60px;
     }
     .progress-bar-cyber {
         height: 6px;
     }
+    .roast-box {
+        padding: 15px 10px;
+    }
+    .roast-quote {
+        font-size: 0.6rem;
+    }
+    .enter-btn {
+        padding: 12px 20px;
+    }
 }
 
-/* Scrollbar for boot log */
+/* Scrollbar */
 .boot-log::-webkit-scrollbar {
     width: 2px;
 }
