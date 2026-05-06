@@ -1,0 +1,345 @@
+/* ===== LOADER SCREEN ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    overflow: hidden;
+    font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.loader-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* ===== MATRIX CANVAS ===== */
+#matrixCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+/* ===== LOADER CONTENT ===== */
+.loader-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+}
+
+/* ===== SKULL ASCII ===== */
+.skull-logo {
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: skullAppear 0.5s ease-out 0.3s forwards;
+}
+
+#skullASCII {
+    font-size: clamp(6px, 1.5vw, 10px);
+    line-height: 1.1;
+    color: #00FF88;
+    text-shadow: 0 0 10px #00FF88, 0 0 30px #00FF88;
+    letter-spacing: 2px;
+}
+
+.glitch-skull {
+    animation: skullGlitch 3s infinite;
+}
+
+@keyframes skullAppear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes skullGlitch {
+    0%, 90%, 100% { transform: translate(0); }
+    92% { transform: translate(-2px, 1px); }
+    94% { transform: translate(2px, -1px); }
+    96% { transform: translate(-1px, -1px); }
+    98% { transform: translate(1px, 1px); }
+}
+
+/* ===== TITLE ===== */
+.title-container {
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 900;
+    color: #00FF88;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-shadow: 
+        0 0 10px #00FF88,
+        0 0 40px #00FF88,
+        0 0 80px #00FF88,
+        0 0 120px #B026FF;
+}
+
+.glitch-text {
+    position: relative;
+    animation: titleFlicker 2s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.8;
+}
+
+.glitch-text::before {
+    color: #FF2D95;
+    animation: glitchShift1 2s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glitch-text::after {
+    color: #00F0FF;
+    animation: glitchShift2 3s infinite;
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+@keyframes titleFlicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.7; }
+}
+
+@keyframes glitchShift1 {
+    0%, 100% { transform: translate(0); }
+    10% { transform: translate(-3px, 1px); }
+    30% { transform: translate(3px, -1px); }
+    50% { transform: translate(-1px, 2px); }
+    70% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitchShift2 {
+    0%, 100% { transform: translate(0); }
+    15% { transform: translate(3px, -1px); }
+    35% { transform: translate(-2px, 1px); }
+    55% { transform: translate(1px, -2px); }
+    75% { transform: translate(-3px, 2px); }
+}
+
+/* ===== SUBTITLE ===== */
+.subtitle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+}
+
+.subtitle {
+    color: #CCFF00;
+    text-shadow: 0 0 8px #CCFF00;
+}
+
+.cursor {
+    color: #00FF88;
+    font-size: 1.1rem;
+}
+
+.cursor.blink {
+    animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-container {
+    margin: 20px 0;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 0.7rem;
+    color: #888;
+    letter-spacing: 2px;
+}
+
+#progressText {
+    color: #00F0FF;
+}
+
+#progressPercent {
+    color: #CCFF00;
+}
+
+.progress-bar-cyber {
+    position: relative;
+    height: 6px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill-cyber {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00FF88, #00F0FF, #B026FF);
+    background-size: 200% 100%;
+    animation: progressGlow 1s linear infinite;
+    transition: width 0.3s ease;
+    border-radius: 3px;
+    box-shadow: 0 0 15px #00FF88;
+}
+
+.progress-glitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 40%, #FF2D95 40%, #FF2D95 42%, transparent 42%);
+    opacity: 0;
+    animation: glitchProgress 0.3s infinite;
+}
+
+@keyframes progressGlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+@keyframes glitchProgress {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.6; }
+}
+
+/* ===== BOOT LOG ===== */
+.boot-log {
+    text-align: left;
+    padding: 10px;
+    max-height: 80px;
+    overflow-y: auto;
+    margin-top: 10px;
+    font-size: 0.65rem;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+.boot-log .log-line {
+    margin: 2px 0;
+    opacity: 0;
+    animation: logAppear 0.3s ease-out forwards;
+}
+
+.boot-log .log-line.success {
+    color: #00FF88;
+}
+
+.boot-log .log-line.warning {
+    color: #CCFF00;
+}
+
+.boot-log .log-line.error {
+    color: #FF1A1A;
+}
+
+@keyframes logAppear {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ===== VERSION ===== */
+.version-text {
+    margin-top: 15px;
+    font-size: 0.6rem;
+    color: #333;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* ===== SCANLINES & VIGNETTE ===== */
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.1) 2px,
+        rgba(0, 0, 0, 0.1) 4px
+    );
+    z-index: 5;
+    pointer-events: none;
+}
+
+.vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.8) 100%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* ===== HIDE MAIN APP ===== */
+.main-app.hidden {
+    display: none;
+}
+
+.main-app {
+    background: #0A0A0A;
+    min-height: 100vh;
+    color: #fff;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 380px) {
+    .main-title {
+        letter-spacing: 2px;
+    }
+    .boot-log {
+        font-size: 0.55rem;
+    }
+}
+
+/* Scrollbar for boot log */
+.boot-log::-webkit-scrollbar {
+    width: 3px;
+}
+.boot-log::-webkit-scrollbar-track {
+    background: #000;
+}
+.boot-log::-webkit-scrollbar-thumb {
+    background: #00FF88;
+    border-radius: 3px;
+}
