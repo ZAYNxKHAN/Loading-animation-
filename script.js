@@ -1,4 +1,4 @@
-// ===== SKULL ASCII ART =====
+// ===== ASCII ART =====
 const skullArt = `
   ▄███████▄
  ████████████
@@ -25,23 +25,84 @@ const bootMessages = [
     { text: '> LOADING GEN-Z_PROTOCOLS...', type: 'success' },
     { text: '> BYPASSING DEMOTIVATION_FIREWALL...', type: 'error' },
     { text: '> FIREWALL BYPASSED!', type: 'success' },
-    { text: '> SYSTEM READY! WELCOME, ZAYN 💀', type: 'success' },
+    { text: '> SYSTEM READY! WELCOME TO THE MATRIX 💀', type: 'success' },
 ];
 
 const subtitleTexts = [
-    'FIA ASPIRANT // CSS WARRIOR',
     'DISCIPLINE IS THE CODE',
     'NO FAP. NO VAPE. JUST GRIND.',
     'STREAK OR DIE TRYING 💀',
+    'PROVE THEM WRONG. RIGHT NOW.',
+    'CAN YOU DO IT? 🗿',
+];
+
+// ===== UNIVERSAL ROAST QUOTES =====
+const universalRoasts = [
+    {
+        quote: '"REELS dekhni hain zindagi mein?\n\nYa APNA GOAL crack karna hai?"',
+        emojis: '💀📱'
+    },
+    {
+        quote: '"CAN YOU DO IT?\n\nYa sirf SCROLL karte rehna hai?"',
+        emojis: '🗿🔥'
+    },
+    {
+        quote: '"Teri CRUSH bhi RIVAL ke\nsaath ghumegi agar tu HAR GAYA!"',
+        emojis: '💔🆚'
+    },
+    {
+        quote: '"SCREEN TIME dekh apna...\n\nMobile rakh aur GRIND kar!"',
+        emojis: '📱⚡'
+    },
+    {
+        quote: '"EXCUSES delete kar...\n\nLEGEND ban... ya AVERAGE reh!"',
+        emojis: '👑💀'
+    },
+    {
+        quote: '"Aaj ki streak teri PEHCHAN hai...\n\nKal ki SUCCESS ki guarantee!"',
+        emojis: '🎯🔥'
+    },
+    {
+        quote: '"DOPAMINE DETOX kar...\n\nCRUSH ko PROUD feel kara!"',
+        emojis: '💀💕'
+    },
+    {
+        quote: '"Losers sleep...\n\nLegends grind at 3 AM!"',
+        emojis: '🌙⚡'
+    },
+    {
+        quote: '"Beta PROVE THEM WRONG...\n\nRight Now!"',
+        emojis: '🔥👑'
+    },
+    {
+        quote: '"Tera TIME aa gaya...\n\nWASTE mat kar!"',
+        emojis: '🎯🗿'
+    },
+];
+
+// Horizontal scroll texts
+const scrollTexts = [
+    'CAN YOU DO IT? 🗿',
+    'LEGEND OR LOSER? 👑',
+    'PROVE THEM WRONG 💀',
+    'GRIND NOW ⚡',
+    'NO EXCUSES 🔥',
+    'CRUSH IS WATCHING 💕',
+    'RIVAL IS WINNING 🆚',
+    'DOPAMINE DETOX 🧠',
+    'STREAK OR DIE 💀',
+    'TODAY DECIDE KAR 🎯',
+    'WAKE UP & GRIND ⚡',
+    'YOUR TIME NOW ⌛',
 ];
 
 // ===== STATE =====
 let progress = 0;
 const totalSteps = bootMessages.length;
 
-// ===== MATRIX RAIN =====
-function initMatrixRain() {
-    const canvas = document.getElementById('matrixCanvas');
+// ===== MATRIX RAIN (LOADING) =====
+function initMatrixRain(canvasId, opacity = 0.6) {
+    const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext('2d');
     
     canvas.width = window.innerWidth;
@@ -53,10 +114,9 @@ function initMatrixRain() {
     const drops = Array(columns).fill(0);
     
     function draw() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillStyle = `rgba(0, 0, 0, ${0.05 / (opacity * 2)})`;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        ctx.fillStyle = '#0FFF50';
         ctx.font = fontSize + 'px monospace';
         
         for (let i = 0; i < drops.length; i++) {
@@ -64,10 +124,11 @@ function initMatrixRain() {
             const x = i * fontSize;
             const y = drops[i] * fontSize;
             
-            // Random color variation
             const colors = ['#0FFF50', '#00FF88', '#00F0FF', '#39FF14'];
             ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+            ctx.globalAlpha = opacity;
             ctx.fillText(char, x, y);
+            ctx.globalAlpha = 1;
             
             if (y > canvas.height && Math.random() > 0.975) {
                 drops[i] = 0;
@@ -99,14 +160,11 @@ async function addBootLog() {
         line.textContent = msg.text;
         logContainer.appendChild(line);
         
-        // Scroll to bottom
         logContainer.scrollTop = logContainer.scrollHeight;
         
-        // Update progress
         progress = Math.round(((i + 1) / totalSteps) * 100);
         updateProgress();
         
-        // Random delay (shorter for Gen-Z patience 😂)
         const delay = msg.type === 'error' ? 600 : (200 + Math.random() * 300);
         await new Promise(resolve => setTimeout(resolve, delay));
     }
@@ -121,95 +179,144 @@ function updateProgress() {
     fill.style.width = progress + '%';
     percent.textContent = progress + '%';
     
-    if (progress < 30) {
-        progressText.textContent = 'INITIALIZING...';
-    } else if (progress < 60) {
-        progressText.textContent = 'LOADING MODULES...';
-    } else if (progress < 90) {
-        progressText.textContent = 'CALIBRATING...';
-    } else {
-        progressText.textContent = 'FINALIZING...';
-    }
+    if (progress < 30) progressText.textContent = 'INITIALIZING...';
+    else if (progress < 60) progressText.textContent = 'LOADING MODULES...';
+    else if (progress < 90) progressText.textContent = 'CALIBRATING...';
+    else progressText.textContent = 'FINALIZING...';
 }
 
-// ===== RANDOM SUBTITLE =====
+// ===== SET RANDOM ROAST =====
+function setRandomRoast() {
+    const roast = universalRoasts[Math.floor(Math.random() * universalRoasts.length)];
+    document.getElementById('roastQuote').textContent = roast.quote;
+    document.getElementById('roastEmojis').textContent = roast.emojis;
+    
+    // Set border texts
+    const borders = document.querySelectorAll('.roast-border-top, .roast-border-bottom');
+    borders[0].textContent = '┌' + '─'.repeat(30) + '┐';
+    borders[1].textContent = '└' + '─'.repeat(30) + '┘';
+}
+
+// ===== INIT HORIZONTAL SCROLL =====
+function initHorizontalScroll() {
+    const scroll1 = document.getElementById('horizontalScroll1');
+    const scroll2 = document.getElementById('horizontalScroll2');
+    const scroll3 = document.getElementById('horizontalScroll3');
+    
+    // Create long text strings
+    scroll1.textContent = scrollTexts.slice(0, 4).join('    ◆    ') + '    ◆    ' + scrollTexts.slice(0, 4).join('    ◆    ');
+    scroll2.textContent = scrollTexts.slice(4, 8).join('    ◇    ') + '    ◇    ' + scrollTexts.slice(4, 8).join('    ◇    ');
+    scroll3.textContent = scrollTexts.slice(8, 12).join('    ◆    ') + '    ◆    ' + scrollTexts.slice(8, 12).join('    ◆    ');
+}
+
+// ===== INIT MAIN APP MATRIX =====
+function initMainAppMatrix() {
+    initMatrixRain('mainAppCanvas', 0.4);
+    setRandomRoast();
+    initHorizontalScroll();
+    document.getElementById('smallSkullASCII').textContent = skullArt;
+}
+
+// ===== GLITCH COMPLETE =====
+function triggerGlitchComplete() {
+    const loader = document.getElementById('loaderScreen');
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes completeGlitch {
+            0% { filter: brightness(1); transform: scale(1); }
+            20% { filter: brightness(2) hue-rotate(90deg); transform: scale(1.03); }
+            40% { filter: brightness(0.3) hue-rotate(-90deg); transform: scale(0.97); }
+            60% { filter: brightness(3) saturate(300%); transform: scale(1.02); }
+            80% { filter: brightness(0.5); transform: scale(0.98); }
+            100% { filter: brightness(5); transform: scale(1.1); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    loader.style.animation = 'completeGlitch 0.6s ease-out forwards';
+}
+
+// ===== SHOW MAIN APP =====
+function showMainApp() {
+    const mainApp = document.getElementById('mainApp');
+    const loader = document.getElementById('loaderScreen');
+    
+    setTimeout(() => {
+        loader.style.display = 'none';
+        mainApp.classList.remove('hidden');
+        initMainAppMatrix();
+        document.body.style.overflow = 'auto';
+    }, 700);
+}
+
+// ===== SET RANDOM SUBTITLE =====
 function setRandomSubtitle() {
     const subtitle = subtitleTexts[Math.floor(Math.random() * subtitleTexts.length)];
     document.getElementById('typingSub').textContent = subtitle;
 }
 
-// ===== GLITCH EFFECT ON COMPLETE =====
-function triggerGlitchComplete() {
-    const loader = document.getElementById('loaderScreen');
-    loader.style.animation = 'none';
-    loader.offsetHeight; // Trigger reflow
-    loader.style.animation = 'completeGlitch 0.5s ease-out';
-    
-    // Add keyframes dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes completeGlitch {
-            0% { filter: brightness(1); transform: scale(1); }
-            20% { filter: brightness(2) hue-rotate(90deg); transform: scale(1.02); }
-            40% { filter: brightness(0.5) hue-rotate(-90deg); transform: scale(0.98); }
-            60% { filter: brightness(2) saturate(200%); transform: scale(1.01); }
-            80% { filter: brightness(0.8); transform: scale(0.99); }
-            100% { filter: brightness(3); transform: scale(1.05); opacity: 0; }
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// ===== HIDE LOADER & SHOW APP =====
-function showMainApp() {
-    setTimeout(() => {
-        document.getElementById('loaderScreen').style.display = 'none';
-        document.getElementById('mainApp').classList.remove('hidden');
-        document.body.style.overflow = 'auto';
-    }, 600);
-}
-
 // ===== MAIN LOADING SEQUENCE =====
 async function startLoading() {
-    // 1. Set skull ASCII
+    // Set skull
     document.getElementById('skullASCII').textContent = skullArt;
     
-    // 2. Set random subtitle
+    // Set random subtitle
     setRandomSubtitle();
     
-    // 3. Start matrix rain (stops after loading)
-    const matrixInterval = initMatrixRain();
+    // Start matrix rain
+    const matrixInterval = initMatrixRain('matrixCanvas', 0.6);
     
-    // 4. Wait a beat
+    // Wait
     await new Promise(resolve => setTimeout(resolve, 400));
     
-    // 5. Start boot sequence
+    // Boot sequence
     await addBootLog();
     
-    // 6. Update to 100%
+    // 100%
     progress = 100;
     updateProgress();
     document.getElementById('progressText').textContent = 'ACCESS GRANTED';
     
-    // 7. Stop matrix rain
+    // Stop matrix
     clearInterval(matrixInterval);
     
-    // 8. Glitch out
-    await new Promise(resolve => setTimeout(resolve, 300));
+    // Glitch out
+    await new Promise(resolve => setTimeout(resolve, 400));
     triggerGlitchComplete();
     
-    // 9. Show main app
+    // Show main app
     showMainApp();
 }
 
-// ===== START ON PAGE LOAD =====
-window.addEventListener('DOMContentLoaded', startLoading);
+// ===== ENTER BUTTON =====
+document.addEventListener('DOMContentLoaded', () => {
+    // Start loading
+    startLoading();
+    
+    // Enter button click
+    document.getElementById('enterBtn').addEventListener('click', () => {
+        const mainApp = document.getElementById('mainApp');
+        
+        // Glitch out effect
+        mainApp.style.animation = 'none';
+        mainApp.offsetHeight;
+        mainApp.style.animation = 'completeGlitch 0.5s ease-out forwards';
+        
+        setTimeout(() => {
+            alert('🚀 Dashboard will load here!\n\nNext: Build the main tracker UI');
+            // Yahan dashboard load hoga
+        }, 600);
+    });
+});
 
-// ===== HANDLE RESIZE =====
+// ===== RESIZE HANDLER =====
 window.addEventListener('resize', () => {
-    const canvas = document.getElementById('matrixCanvas');
-    if (canvas) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
+    ['matrixCanvas', 'mainAppCanvas'].forEach(id => {
+        const canvas = document.getElementById(id);
+        if (canvas) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+    });
 });
