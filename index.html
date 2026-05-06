@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
-    <title>ZSYS v2.0 | Loading...</title>
-    
-    <!-- ✅ FIX: Simple path -->
+    <title>ZSYS v2.0 | Enter The Matrix</title>
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
     
@@ -61,13 +58,65 @@
         <div class="vignette"></div>
     </div>
     
-    <!-- MAIN APP -->
+    <!-- MAIN WELCOME SCREEN -->
     <div id="mainApp" class="main-app hidden">
-        <h1 style="color:#00FF88;text-align:center;margin-top:40vh;">WELCOME TO STREAK TRACKER</h1>
+        
+        <!-- Matrix Rain Canvas (Lighter) -->
+        <canvas id="mainAppCanvas"></canvas>
+        
+        <!-- Horizontal scrolling text background -->
+        <div class="horizontal-scroll-container">
+            <div class="horizontal-scroll" id="horizontalScroll1"></div>
+            <div class="horizontal-scroll" id="horizontalScroll2"></div>
+            <div class="horizontal-scroll" id="horizontalScroll3"></div>
+        </div>
+        
+        <!-- Center Content -->
+        <div class="welcome-content">
+            
+            <!-- Small Skull -->
+            <div class="small-skull">
+                <pre id="smallSkullASCII"></pre>
+            </div>
+            
+            <!-- Welcome Title -->
+            <h2 class="welcome-title glitch-text-small" data-text="WELCOME BACK">
+                WELCOME BACK
+            </h2>
+            
+            <!-- Roast Quote Box -->
+            <div class="roast-box" id="roastBox">
+                <div class="roast-border-top"></div>
+                <div class="roast-quote" id="roastQuote"></div>
+                <div class="roast-emojis" id="roastEmojis"></div>
+                <div class="roast-border-bottom"></div>
+            </div>
+            
+            <!-- Action Text -->
+            <div class="action-text">
+                <span class="action-line">PROVE THEM WRONG.</span>
+                <span class="action-line highlight">RIGHT NOW.</span>
+            </div>
+            
+            <!-- Enter Button -->
+            <button id="enterBtn" class="enter-btn">
+                <span class="enter-btn-text">⏃ ENTER THE SYSTEM ⏃</span>
+                <span class="enter-btn-glitch"></span>
+            </button>
+            
+            <!-- Status -->
+            <div class="status-bar">
+                <span>⚡ ZSYS ONLINE</span>
+                <span class="status-dot"></span>
+                <span>STREAK ENGINE READY</span>
+            </div>
+        </div>
+        
+        <!-- Scanlines -->
+        <div class="scanlines"></div>
+        <div class="vignette"></div>
     </div>
     
-    <!-- ✅ Script at end of body -->
     <script src="script.js"></script>
-    
 </body>
 </html>
