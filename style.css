@@ -19,7 +19,7 @@ body {
     width: 100vw;
     height: 100vh;
     height: 100dvh;
-    background: #000000;
+    background: radial-gradient(ellipse at center, #0A0A0A 0%, #000000 70%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,14 +27,14 @@ body {
     overflow: hidden;
 }
 
-/* ===== MATRIX CANVAS ===== */
+/* ===== MATRIX CANVAS - FULL OPACITY ===== */
 #matrixCanvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.3;
+    opacity: 0.6;
     z-index: 1;
 }
 
@@ -46,62 +46,116 @@ body {
     padding: 20px;
     max-width: 400px;
     width: 90%;
+    animation: floatIn 1s ease-out;
+}
+
+@keyframes floatIn {
+    from { 
+        opacity: 0; 
+        transform: scale(0.8) translateY(20px);
+        filter: blur(10px);
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
 }
 
 /* ===== SKULL ASCII ===== */
 .skull-logo {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     opacity: 0;
-    animation: skullAppear 0.5s ease-out 0.3s forwards;
+    animation: skullAppear 0.8s ease-out 0.3s forwards;
 }
 
 #skullASCII {
-    font-size: clamp(6px, 1.5vw, 10px);
+    font-size: clamp(5px, 1.3vw, 9px);
     line-height: 1.1;
     color: #00FF88;
-    text-shadow: 0 0 10px #00FF88, 0 0 30px #00FF88;
-    letter-spacing: 2px;
+    text-shadow: 
+        0 0 5px #00FF88,
+        0 0 15px #00FF88,
+        0 0 30px #00FF88,
+        0 0 60px #00FF88;
+    letter-spacing: 3px;
+    filter: drop-shadow(0 0 20px #00FF88);
 }
 
 .glitch-skull {
-    animation: skullGlitch 3s infinite;
+    animation: skullGlitch 4s infinite, skullPulse 2s infinite;
 }
 
 @keyframes skullAppear {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(15px) scale(0.9);
+        filter: blur(5px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
 }
 
 @keyframes skullGlitch {
-    0%, 90%, 100% { transform: translate(0); }
-    92% { transform: translate(-2px, 1px); }
-    94% { transform: translate(2px, -1px); }
-    96% { transform: translate(-1px, -1px); }
-    98% { transform: translate(1px, 1px); }
+    0%, 88%, 92%, 100% { transform: translate(0); }
+    90% { transform: translate(-3px, 2px) skew(1deg); }
+    91% { transform: translate(3px, -1px) skew(-1deg); }
+}
+
+@keyframes skullPulse {
+    0%, 100% { filter: drop-shadow(0 0 20px #00FF88); }
+    50% { filter: drop-shadow(0 0 40px #00FF88) drop-shadow(0 0 60px #B026FF); }
 }
 
 /* ===== TITLE ===== */
 .title-container {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    position: relative;
 }
 
 .main-title {
-    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
     font-weight: 900;
     color: #00FF88;
-    letter-spacing: 4px;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     text-shadow: 
-        0 0 10px #00FF88,
+        0 0 5px #00FF88,
+        0 0 15px #00FF88,
         0 0 40px #00FF88,
         0 0 80px #00FF88,
-        0 0 120px #B026FF;
+        0 0 120px #B026FF,
+        0 0 160px #B026FF;
+    animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% { 
+        text-shadow: 
+            0 0 5px #00FF88,
+            0 0 15px #00FF88,
+            0 0 40px #00FF88,
+            0 0 80px #00FF88,
+            0 0 120px #B026FF;
+    }
+    50% { 
+        text-shadow: 
+            0 0 10px #00FF88,
+            0 0 30px #00FF88,
+            0 0 60px #00FF88,
+            0 0 100px #00FF88,
+            0 0 150px #B026FF,
+            0 0 200px #FF2D95;
+    }
 }
 
 .glitch-text {
     position: relative;
-    animation: titleFlicker 2s infinite;
+    animation: titleFlicker 3s infinite;
 }
 
 .glitch-text::before,
@@ -111,40 +165,40 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 .glitch-text::before {
     color: #FF2D95;
-    animation: glitchShift1 2s infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    animation: glitchShift1 2.5s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+    text-shadow: 0 0 20px #FF2D95;
 }
 
 .glitch-text::after {
     color: #00F0FF;
-    animation: glitchShift2 3s infinite;
-    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    animation: glitchShift2 3.5s infinite;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    text-shadow: 0 0 20px #00F0FF;
 }
 
 @keyframes titleFlicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-    20%, 24%, 55% { opacity: 0.7; }
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.6; }
 }
 
 @keyframes glitchShift1 {
     0%, 100% { transform: translate(0); }
-    10% { transform: translate(-3px, 1px); }
-    30% { transform: translate(3px, -1px); }
-    50% { transform: translate(-1px, 2px); }
-    70% { transform: translate(2px, -2px); }
+    8% { transform: translate(-4px, 2px); }
+    16% { transform: translate(4px, -1px); }
+    24% { transform: translate(-2px, 3px); }
 }
 
 @keyframes glitchShift2 {
     0%, 100% { transform: translate(0); }
-    15% { transform: translate(3px, -1px); }
-    35% { transform: translate(-2px, 1px); }
-    55% { transform: translate(1px, -2px); }
-    75% { transform: translate(-3px, 2px); }
+    12% { transform: translate(4px, -2px); }
+    25% { transform: translate(-3px, 1px); }
+    37% { transform: translate(2px, -3px); }
 }
 
 /* ===== SUBTITLE ===== */
@@ -152,22 +206,28 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     font-size: clamp(0.7rem, 2vw, 0.9rem);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 255, 136, 0.2);
 }
 
 .subtitle {
     color: #CCFF00;
-    text-shadow: 0 0 8px #CCFF00;
+    text-shadow: 0 0 10px #CCFF00, 0 0 20px #CCFF00;
+    letter-spacing: 1px;
 }
 
 .cursor {
     color: #00FF88;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    text-shadow: 0 0 15px #00FF88;
 }
 
 .cursor.blink {
-    animation: blinkCursor 0.8s infinite;
+    animation: blinkCursor 0.7s infinite;
 }
 
 @keyframes blinkCursor {
@@ -177,44 +237,78 @@ body {
 
 /* ===== PROGRESS BAR ===== */
 .progress-container {
-    margin: 20px 0;
+    margin: 25px 0;
+    position: relative;
 }
 
 .progress-label {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     font-size: 0.7rem;
-    color: #888;
-    letter-spacing: 2px;
+    color: #666;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 #progressText {
     color: #00F0FF;
+    text-shadow: 0 0 10px #00F0FF;
+    animation: textPulse 1.5s infinite;
 }
 
 #progressPercent {
     color: #CCFF00;
+    text-shadow: 0 0 10px #CCFF00;
+    font-weight: bold;
+}
+
+@keyframes textPulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }
 
 .progress-bar-cyber {
     position: relative;
-    height: 6px;
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 3px;
+    height: 8px;
+    background: #0A0A0A;
+    border: 1px solid #1A1A1A;
+    border-radius: 4px;
     overflow: hidden;
+    box-shadow: 
+        inset 0 0 10px rgba(0,0,0,0.5),
+        0 0 20px rgba(0, 255, 136, 0.1);
 }
 
 .progress-fill-cyber {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #00FF88, #00F0FF, #B026FF);
-    background-size: 200% 100%;
-    animation: progressGlow 1s linear infinite;
-    transition: width 0.3s ease;
-    border-radius: 3px;
-    box-shadow: 0 0 15px #00FF88;
+    background: linear-gradient(90deg, 
+        #00FF88, 
+        #00F0FF, 
+        #B026FF, 
+        #FF2D95,
+        #00FF88
+    );
+    background-size: 300% 100%;
+    animation: progressGlow 2s linear infinite;
+    transition: width 0.2s ease;
+    border-radius: 4px;
+    box-shadow: 
+        0 0 15px #00FF88,
+        0 0 30px #00FF88,
+        inset 0 0 10px rgba(255,255,255,0.1);
+    position: relative;
+}
+
+.progress-fill-cyber::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
 }
 
 .progress-glitch {
@@ -223,66 +317,92 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent 40%, #FF2D95 40%, #FF2D95 42%, transparent 42%);
+    background: linear-gradient(90deg, 
+        transparent 35%, 
+        rgba(255, 45, 149, 0.5) 35%, 
+        rgba(255, 45, 149, 0.5) 37%, 
+        transparent 37%
+    );
     opacity: 0;
-    animation: glitchProgress 0.3s infinite;
+    animation: glitchBar 0.2s infinite;
 }
 
 @keyframes progressGlow {
     0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
+    100% { background-position: 300% 50%; }
 }
 
-@keyframes glitchProgress {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 0.6; }
+@keyframes glitchBar {
+    0%, 100% { opacity: 0; transform: translateX(0); }
+    10% { opacity: 0.8; transform: translateX(5px); }
+    20% { opacity: 0; transform: translateX(-5px); }
 }
 
 /* ===== BOOT LOG ===== */
 .boot-log {
     text-align: left;
-    padding: 10px;
-    max-height: 80px;
+    padding: 12px;
+    max-height: 90px;
     overflow-y: auto;
-    margin-top: 10px;
-    font-size: 0.65rem;
-    color: #555;
+    margin-top: 15px;
+    font-size: 0.6rem;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    border-radius: 4px;
     letter-spacing: 1px;
 }
 
 .boot-log .log-line {
-    margin: 2px 0;
+    margin: 3px 0;
     opacity: 0;
-    animation: logAppear 0.3s ease-out forwards;
+    animation: logAppear 0.4s ease-out forwards;
+    padding: 2px 0;
 }
 
 .boot-log .log-line.success {
     color: #00FF88;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
 }
 
 .boot-log .log-line.warning {
     color: #CCFF00;
+    text-shadow: 0 0 5px rgba(204, 255, 0, 0.3);
 }
 
 .boot-log .log-line.error {
     color: #FF1A1A;
+    text-shadow: 0 0 8px rgba(255, 26, 26, 0.5);
+    animation: errorShake 0.3s ease-out;
 }
 
 @keyframes logAppear {
-    from { opacity: 0; transform: translateX(-10px); }
-    to { opacity: 1; transform: translateX(0); }
+    from { 
+        opacity: 0; 
+        transform: translateX(-15px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0);
+    }
+}
+
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
 }
 
 /* ===== VERSION ===== */
 .version-text {
-    margin-top: 15px;
-    font-size: 0.6rem;
-    color: #333;
-    letter-spacing: 3px;
+    margin-top: 20px;
+    font-size: 0.55rem;
+    color: #1A1A1A;
+    letter-spacing: 4px;
     text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.1);
 }
 
-/* ===== SCANLINES & VIGNETTE ===== */
+/* ===== SCANLINES ===== */
 .scanlines {
     position: absolute;
     top: 0;
@@ -292,23 +412,48 @@ body {
     background: repeating-linear-gradient(
         0deg,
         transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.1) 2px,
-        rgba(0, 0, 0, 0.1) 4px
+        transparent 3px,
+        rgba(0, 0, 0, 0.15) 3px,
+        rgba(0, 0, 0, 0.15) 6px
     );
     z-index: 5;
     pointer-events: none;
 }
 
+/* ===== VIGNETTE ===== */
 .vignette {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.8) 100%);
+    background: radial-gradient(
+        ellipse at center, 
+        transparent 40%, 
+        rgba(0, 0, 0, 0.7) 80%,
+        rgba(0, 0, 0, 0.95) 100%
+    );
     z-index: 5;
     pointer-events: none;
+}
+
+/* ===== SCREEN FLICKER ON START ===== */
+.loader-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 136, 0.03);
+    z-index: 6;
+    pointer-events: none;
+    animation: screenFlicker 0.1s infinite;
+}
+
+@keyframes screenFlicker {
+    0%, 95%, 97%, 100% { opacity: 0; }
+    96% { opacity: 1; }
 }
 
 /* ===== HIDE MAIN APP ===== */
@@ -317,7 +462,7 @@ body {
 }
 
 .main-app {
-    background: #0A0A0A;
+    background: #050505;
     min-height: 100vh;
     color: #fff;
 }
@@ -325,21 +470,25 @@ body {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 380px) {
     .main-title {
-        letter-spacing: 2px;
+        letter-spacing: 3px;
     }
     .boot-log {
         font-size: 0.55rem;
+        max-height: 70px;
+    }
+    .progress-bar-cyber {
+        height: 6px;
     }
 }
 
 /* Scrollbar for boot log */
 .boot-log::-webkit-scrollbar {
-    width: 3px;
+    width: 2px;
 }
 .boot-log::-webkit-scrollbar-track {
     background: #000;
 }
 .boot-log::-webkit-scrollbar-thumb {
-    background: #00FF88;
-    border-radius: 3px;
+    background: linear-gradient(#00FF88, #B026FF);
+    border-radius: 2px;
 }
